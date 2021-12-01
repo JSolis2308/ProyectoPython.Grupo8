@@ -309,7 +309,7 @@ def borrar_fila(cuadricula, ocupadas):
             for j in range(len(fila)):
                 try:
                     del ocupadas[(j, i)]
-                except:
+                except j not in range(len(fila)):
                     continue
 
     # ahora para mover lo demás
@@ -525,9 +525,10 @@ def main(vent):
         pygame.display.update()
 
         if perder(pos_ocupadas) is True:
-            # esto se accesa cuando se pierde la partida usa la funcion de
-            # texto en el medio para imprimir PERDISTE :P luego espera un
-            # poco para que se pueda leer y luego termina la partida
+            # esto se accesa cuando se pierde la partida, se usa
+            # la funcion dibujar_texto para imprimir la puntuacion
+            # y las opciones de volver al menu, reinicio del juego
+            # o salir del juego.
             vent.fill((0, 0, 0))
             dibujar_texto(
                 'Fin del juego', 50, (255, 255, 255), vent, 150, 100
@@ -551,9 +552,7 @@ def main(vent):
             pygame.display.update()
             pygame.time.delay(1500)
             for event in pygame.event.get():
-                # Teclas (movimiento será con wasd o flechas):
                 if event.type == pygame.KEYDOWN:
-                    # se usa mov_val para validar cada tecla
                     if event.key == pygame.K_SPACE:
                         main_menu(vent)
                     if event.key == pygame.K_r:
@@ -564,12 +563,11 @@ def main(vent):
 
 
 def main_menu(vent):
-    # main menu pendiente
     activo = True
     while activo:
         # loop de main_menu
-        # de momento pide una tecla para iniciar que no sea ESC porque
-        # con esa se sale del juego
+        # A traves de la funcion dibujar_texto se imprimen las opciones
+        # del menu en la pantalla.
         ancho_menu = 950
         altura_menu = 600
         ancho_total = 800
@@ -596,6 +594,8 @@ def main_menu(vent):
                 if event.type == pygame.QUIT:
                     activo = False
                 if event.type == pygame.KEYDOWN:
+                    # A traves de las teclas se selecciona la opcion del
+                    # menu a realizar.
                     if event.key == pygame.K_n:
                         pygame.display.set_mode((ancho_total, altura_total))
                         pygame.display.update()
