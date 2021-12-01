@@ -276,21 +276,6 @@ def dibujar_cuadricula(superficie, cuadricula):
                              )
 
 
-def dibujar_textoenelmedio(texto, size, color, superficie):
-    # esta función servirá para cuando pierdas y actualmente el
-    # menú principal la usa
-    # crea un texto en el medio de la pantalla
-    pygame.font.init()
-    font = pygame.font.SysFont('timesnewroman', size)
-    despedida = font.render(texto, 1, color)
-    superficie.blit(despedida,
-                    (esq_sup_izq_x + ancho_juego/2 -
-                     (despedida.get_width()/2),
-                     esq_sup_izq_y + altura_juego/2 - despedida.get_height()
-                     )
-                    )
-
-
 def borrar_fila(cuadricula, ocupadas):
     # esta función fue la más complicada de hacer, se encarga de
     # borrar las filas que ya se hayan llenado con piezas, de mover
@@ -531,7 +516,6 @@ def main(vent):
                                         ):
                                     pygame.quit()
                                     sys.exit()
-
 
         pos_forma = formatear_forma(pieza_actual)
 
