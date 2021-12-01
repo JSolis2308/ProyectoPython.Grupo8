@@ -493,6 +493,45 @@ def main(vent):
                     vel_caida += 0.05
                 if event.key == pygame.K_ESCAPE:
                     main_menu(vent)
+                if event.key == pygame.K_p:
+                    active = False
+                    vent.fill((0, 0, 0))
+                    dibujar_texto(
+                        'Juego en pausa', 50, (255, 255, 255), vent, 100, 100
+                        )
+                    dibujar_texto(
+                        'DIGITE "SPACE" para regresar al menu principal',
+                        15, (255, 255, 255), vent, 50, 500
+                        )
+                    dibujar_texto(
+                        'DIGITE "C" para continuar',
+                        15, (255, 255, 255), vent, 50, 550
+                        )
+                    dibujar_texto(
+                        'DIGITE "Q" o "ESC" para salir',
+                        15, (255, 255, 255), vent, 50, 600
+                        )
+                    dibujar_texto(
+                        'DIGITE "R" para iniciar un juego nuevo',
+                        15, (255, 255, 255), vent, 50, 650
+                        )
+                    pygame.display.update()
+                    while active is False:
+                        for event in pygame.event.get():
+                            if event.type == pygame.KEYDOWN:
+                                if event.key == pygame.K_c:
+                                    active = True
+                                if event.key == pygame.K_SPACE:
+                                    main_menu(vent)
+                                if event.key == pygame.K_r:
+                                    main(vent)
+                                if (
+                                    event.key == pygame.K_q or
+                                    event.key == pygame.K_ESCAPE
+                                        ):
+                                    pygame.quit()
+                                    sys.exit()
+
 
         pos_forma = formatear_forma(pieza_actual)
 
@@ -604,8 +643,8 @@ def main_menu(vent):
                         instrucciones = pygame.display.set_mode(
                             (ancho_menu, altura_menu)
                             )
-                        menu_de_ayuda = pygame.image.load("Menu de Ayuda.jpeg")
-                        instrucciones.blit(menu_de_ayuda, (0, 0))
+                        menu_de_ayuda = pygame.image.load("Menu_Ayuda.jpeg")
+                        instrucciones.blit(menu_de_ayuda, (170, 0))
                         pygame.display.update()
                     if event.key == pygame.K_BACKSPACE:
                         main_menu(vent)
