@@ -533,7 +533,7 @@ def main(vent):
                 'Fin del juego', 50, (255, 255, 255), vent, 150, 100
                 )
             dibujar_texto(
-                'Puntuacion:' + str(puntaje),
+                'Puntuacion: ' + str(puntaje),
                 30, (255, 255, 255), vent, 250, 190
                 )
             dibujar_texto(
@@ -618,4 +618,3 @@ vent = pygame.display.set_mode((ancho_total, altura_total))
 pygame.display.set_caption('Tetris')
 main_menu(vent)
 pygame.display.quit()
-
